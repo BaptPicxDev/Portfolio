@@ -4,3 +4,4 @@ gh-pages
 *.pub
 
 .git/
+*.zip
