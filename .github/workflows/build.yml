@@ -16,8 +16,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build and Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.BPD_GITHUB_DEPLOY_TOKEN }}
-          publish_dir: ./  # Changer le chemin si nécessaire
+      - name: Debugging
+        run: echo "Repository URL: https://github.com/BaptPicxDev/Portfolio.git"
+
+      # - name: Build and Deploy
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.BPD_GITHUB_DEPLOY_TOKEN }}
+      #     publish_dir: ./  # Changer le chemin si nécessaire
