@@ -1,0 +1,23 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'README.md'
+  pull_request:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build and Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.BPD_GITHUB_DEPLOY_TOKEN }}
+          publish_dir: ./  # Changer le chemin si nécessaire
