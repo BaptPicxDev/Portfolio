@@ -11,3 +11,5 @@ Access the website here: https://baptpicxdev.github.io/Portfolio/
 Icons: https://remixicon.com/
 
 Fonts: https://fonts.google.com/specimen/Poppins
+
+SVG: https://worldvectorlogo.com/pt
