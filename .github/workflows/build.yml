@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        permissions:
+          contents: write
 
       - name: Debugging
         run: |
@@ -24,5 +26,7 @@ jobs:
       - name: Deploy website
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.BPD_GITHUB_DEPLOY_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
