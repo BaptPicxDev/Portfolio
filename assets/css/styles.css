@@ -405,3 +405,48 @@ img{
         transform: translate(0)
     }
 }
+
+/* Qualification */
+.qualification{
+    position: relative;
+}
+
+.qualification__container{
+    row-gap: 3.5rem;
+}
+
+.qualification__title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5rem;
+    font-size: var(--small-font-size);
+    font-weight: var(--font-semi-bold);
+    margin-bottom: 2rem;
+}
+
+.qualification__title i{
+    font-size: 1rem;
+    font-weight: initial;
+}
+
+.qualification__info{
+    display: grid;
+    row-gap: 2rem;
+}
+
+.qualification__name{
+    font-size: var(--normal-font-size);
+    margin-bottom: 1.25rem;
+}
+
+.qualification__country,
+.qualification__year{
+    display: block;
+    font-size: var(--small-font-size);
+    color: var(--text-color-light);
+}
+
+.qualification__country{
+    margin-bottom: .75rem;
+}
