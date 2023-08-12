@@ -11,7 +11,7 @@
     --text-color: hsl(207, 4%, 28%);
     --text-color-light: hsl(207, 4%, 56%);
     --body-color: hsl(207, 4%, 95%);
-    --container-color: hsl(207, 4%, 95%);
+    --container-color: hsl(240, 5%, 92%);
     --gradient-color: linear-gradient(180deg,
                         hsl(207, 48%, 72%, 0),
                         hsl(207, 65%, 65%, ));
@@ -405,3 +405,94 @@ img{
         transform: translate(0)
     }
 }
+
+/* Qualification */
+.qualification{
+    position: relative;
+}
+
+.qualification__container{
+    row-gap: 3.5rem;
+}
+
+.qualification__title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5rem;
+    font-size: var(--small-font-size);
+    font-weight: var(--font-semi-bold);
+    margin-bottom: 2rem;
+}
+
+.qualification__title i{
+    font-size: 1rem;
+    font-weight: initial;
+}
+
+.qualification__info{
+    display: grid;
+    row-gap: 2rem;
+}
+
+.qualification__name{
+    font-size: var(--normal-font-size);
+    margin-bottom: 1.25rem;
+}
+
+.qualification__country,
+.qualification__year{
+    display: block;
+    font-size: var(--small-font-size);
+    color: var(--text-color-light);
+}
+
+.qualification__country{
+    margin-bottom: .75rem;
+}
+
+/* Projects */
+.projects__container{
+    overflow: initial;
+}
+
+.projects__content{
+    display: grid;
+    justify-content: center;
+}
+
+.projects__img{
+    width: 250px;
+    border-radius: .75rem;
+    margin-bottom: 1.25rem;
+}
+
+.projects__subtitle{
+    font-size: var(--small-font-size);
+    color: var(--text-color-light);
+}
+
+.projects__title{
+    font-size: var(--h2-font-size);
+    margin-bottom: 1.25rem;
+    margin: .5rem 0 1.25rem;
+}
+
+.projects__button{
+    display: inline-flex;
+    align-items: center;
+    column-gap: .5rem;
+    color:  var(--title-color);
+    font-size: var(--small-font-size);
+}
+
+.projects__button{
+    font-size: 1rem;
+    transition: transform .3s;
+}
+
+.projects__button:hover i{
+    transform: translateX(.25rem);
+}
+
+/* Swipper */
