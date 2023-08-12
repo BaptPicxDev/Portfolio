@@ -13,3 +13,5 @@ Icons: https://remixicon.com/
 Fonts: https://fonts.google.com/specimen/Poppins
 
 SVG: https://worldvectorlogo.com/pt
+
+Swipper: https://swiperjs.com/
