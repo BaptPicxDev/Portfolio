@@ -15,3 +15,5 @@ Fonts: https://fonts.google.com/specimen/Poppins
 SVG: https://worldvectorlogo.com/pt
 
 Swipper: https://swiperjs.com/
+
+Free images: https://pixabay.com/photos/public-speaking-mic-microphone-3926344/
