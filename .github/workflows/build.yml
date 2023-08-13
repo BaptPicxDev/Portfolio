@@ -19,10 +19,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Debugging
-        run: |
-          echo 'hello'
-
       - name: Deploy website
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -30,3 +26,7 @@ jobs:
           publish_dir: ./
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
+        # env:
+        #   EMAIL_SERVICE_ID: ${{ secrets.SERVICE_ID }}
+        #   EMAIL_TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
+        #   EMAIL_PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
