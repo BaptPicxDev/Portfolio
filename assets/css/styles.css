@@ -191,7 +191,7 @@ img{
     gap: 2rem 3rem;
 }
 
-.nav_link{
+.nav__link{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -666,4 +666,34 @@ img{
 
 ::-webkit-scrollbar-thumb:hover{
     background-color: hsl(207, 4%, 55%);
+}
+
+/* Active link */
+.active-link{
+    color: var(--title-color);
+}
+
+/* Scroll up */
+.scrollup{
+    position: fixed;
+    right: 1rem;
+    bottom: -30%;
+    background-color: var(--body-color);
+    box-shadow: 0 4px 12px hsl(207, 24%, 35%, .15);
+    display: inline-flex;
+    padding: .35rem;
+    border-radius: .25rem;
+    font-size: 1.1rem;
+    color: var(--title-color);
+    z-index: var(--z-tooltip);
+    transition: bottom .3s, transform .3s;
+}
+
+.scrollup:hover{
+    transform: translateY(-.25rem);
+}
+
+/* Show scroll */
+.show-scroll{
+    bottom: 7.5rem;
 }
