@@ -68,6 +68,7 @@ body{
     font-size: var(--normal-font-size);
     background-color: var(--body-color);
     color: var(--text-color);
+    transition: background .4s; /* for dark mode animation*/
 }
 
 h1,h2,h3{
@@ -150,6 +151,7 @@ img{
     box-shadow: 0 4px 20px hsla(207, 24%, 35%, .1);
     padding-inline: 1.5rem;
     border-radius: 3rem;
+    transition: background .4s; /* for dark mode animation*/
 }
 
 .nav__logo,
@@ -248,6 +250,7 @@ img{
     justify-self: center;
     border-radius: 6.25rem;
     place-items: center;
+    transition: background .4s; /* for dark mode animation*/
 }
 
 .home__perfil{
@@ -372,6 +375,7 @@ img{
     border-radius: 3rem;
     place-items: center;
     margin-bottom: 1rem;
+    transition: background .4s; /* for dark mode animation*/
 }
 
 .skills__blob img{
@@ -696,4 +700,57 @@ img{
 /* Show scroll */
 .show-scroll{
     bottom: 7.5rem;
+}
+
+/* Theme */
+.nav__buttons{
+    display: flex;
+    align-items: center;
+    column-gap: 1.5rem;
+}
+
+.change-theme{
+    font-size: 1.25rem;
+    color: var(--title-color);
+    cursor: pointer;
+    transition: color .3s;
+}
+
+body.dark-theme{
+    /* Color*/
+    --first-color: hsl(207, 65%, 95%);
+    --text-color: hsl(207, 4%, 65%);
+    --body-color: hsl(207, 4%, 10%);
+    --container-color: hsl(240, 5%, 12%); /* hsl(240, 5%, 12%); */
+}
+
+.dark-theme .nav,
+.dark-theme .nav__menu,
+.dark-theme .scrollup{
+    background-color: var(--container-color);
+    box-shadow: 0 4px 20px hsla(207, 24%, 8%, .4);
+}
+
+/* .dark-theme .qualification__img{
+    filter: invert(1);
+} */
+
+.dark-theme .home__social-link{
+    color: var(--title-color);
+}
+
+.dark-theme .section__border{
+    border-bottom: 1px solid hsl(207, 4%, 32%);
+}
+
+.dark-theme::-webkit-scrollbar{
+    background-color: hsl(207, 4%, 15%);
+}
+
+.dark-theme::-webkit-scrollbar-thumb{
+    background-color: hsl(207, 4%, 25%);
+}
+
+.dark-theme::-webkit-scrollbar-thumb:hover{
+    background-color: hsl(207, 4%, 35%);
 }
