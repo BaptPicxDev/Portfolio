@@ -49,3 +49,4 @@ let swiperProjects = new Swiper(".projects__container", {
         },
     },
 });
+

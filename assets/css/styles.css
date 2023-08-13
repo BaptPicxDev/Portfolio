@@ -536,3 +536,119 @@ img{
 .projects__container .swiper-pagination-bullet-active{
     background-color: var(--title-color);
 }
+
+/* Contact */
+.contact__container{
+    row-gap: 3.5rem;
+}
+
+.contact__title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5rem;
+    font-size: var(--small-font-size);
+    font-weight: var(--font-semi-bold);
+    margin-bottom: 2.5rem;
+}
+
+.contact__title{
+    font-size: 1rem;
+    font-weight: initial;
+}
+
+.contact__info,
+.contact__data,
+.contact__form{
+    display: grid;
+}
+
+.contact__info{
+    row-gap: 2rem;
+}
+
+.contact__data{
+    row-gap: .75rem;
+}
+
+.contact__data-title{
+    font-size: var(--small-font-size);
+    color: var(--text-color-light);
+}
+
+.contact__data-info{
+    font-size: var(--small-font-size);
+    font-family: var(--title-font);
+    color: var(--title-color);
+}
+
+.contact__button{
+    width: max-content;
+    display: inline-flex;
+    align-items: center;
+    column-gap: .5rem;
+    color: var(--title-color);
+    font-size: var(--small-font-size);
+}
+
+.contact__button i{
+    font-size: 1rem;
+    transition: transform .3s;
+}
+
+.contact__button:hover i{
+    transform: translateX(.25rem);
+}
+
+/* Footer */
+.footer__container{
+    padding: 3rem 0 7rem;
+    text-align: center;
+}
+
+.footer__title{
+    font-size: var(--h1-font-size);
+    font-weight: var(--font-semi-bold);
+    margin-bottom: 1rem;
+}
+
+.footer__list,
+.footer__social{
+    display: flex;
+    justify-content: center;
+}
+
+.footer__list{
+    margin: 2.5rem 0;
+    column-gap: 2.5rem;
+}
+
+.footer__link{
+    color: var(--title-color);
+}
+
+.footer__link:hover{
+    text-decoration: underline;
+}
+
+.footer__social{
+    column-gap: 1.25rem;
+}
+
+.footer__social-link{
+    font-size: 1.25rem;
+    color: var(--title-color);
+    transition: transform .3s;
+}
+
+.footer__social-link:hover{
+    transform: translateY(-.15rem);
+}
+
+.footer__copy{
+    display: block;
+    margin-top: 4.5rem;
+    font-size: var(--smaller-font-size);
+    color: var(--text-color-light);
+}
+

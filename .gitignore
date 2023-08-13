@@ -5,3 +5,4 @@ gh-pages
 
 .git/
 *.zip
+*.env
