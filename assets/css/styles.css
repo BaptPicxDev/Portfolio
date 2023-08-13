@@ -697,3 +697,32 @@ img{
 .show-scroll{
     bottom: 7.5rem;
 }
+
+/* Theme */
+.nav__buttons{
+    display: flex;
+    align-items: center;
+    column-gap: 1.5rem;
+}
+
+.change-theme{
+    font-size: 1.25rem;
+    color: var(--title-color);
+    cursor: pointer;
+    transition: color .3s;
+}
+
+body.dark-theme{
+    /* Color*/
+    --first-color: hsl(207, 65%, 95%);
+    --text-color: hsl(207, 4%, 65%);
+    --body-color: hsl(207, 4%, 10%);
+    --container-color: hsl(240, 5%, 12%);
+}
+
+.dark-theme .nav,
+.dark-theme .nav__menu,
+.dark-theme .scrollup{
+    background-color: var(--container-color);
+    box-shadow: 0 4px 20px hsla(207, 24%, 8%, .4);
+}
