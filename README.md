@@ -19,3 +19,5 @@ Swipper: https://swiperjs.com/
 Free images: https://pixabay.com/photos/public-speaking-mic-microphone-3926344/
 
 EmailJS: https://www.emailjs.com/
+
+Futur deployment: https://vercel.com/pricing
