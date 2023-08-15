@@ -129,8 +129,8 @@ const sr = ScrollReveal({
 //     reset: true /* repeat */
 })
 
-sr.reveal(`.home__data, .projects_container, .contact__content, .footer__container`)
-sr.reveal(`.home__info div`, {delay: 600, origin: 'bottom', interval:100})
+sr.reveal(`.home__data, .projects_container, .contact__content`)
+sr.reveal(`.home__info div, .footer__container`, {delay: 600, origin: 'bottom', interval:100})
 sr.reveal(`.skills__content:nth-child(1)`, {origin: 'left'})
 sr.reveal(`.skills__content:nth-child(2)`, {origin: 'right'})
 sr.reveal(`.qualification__content`, {interbal: 100})

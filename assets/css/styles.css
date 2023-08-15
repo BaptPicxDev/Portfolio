@@ -337,7 +337,7 @@ img{
     row-gap: 3.5rem;
 }
 
-.skill_title{
+.skills__title{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -359,7 +359,7 @@ img{
 }
 
 .skills__info{
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, .5fr);
     gap: 2.5rem 2rem;
 }
 
@@ -370,11 +370,11 @@ img{
 
 .skills__blob{
     width: 80px;
-    height: 100ppx;
+    height: 100px;
     background-color: var(--container-color);
     border-radius: 3rem;
     place-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     transition: background .4s; /* for dark mode animation*/
 }
 
@@ -1032,4 +1032,16 @@ body.dark-theme{
     .footer__copy{
         margin-top: 5rem;
     }
+}
+
+
+/* CV button */
+.button{
+    display: inline-block;
+    background-color: var(--first-color);
+    color: var(--body-color);
+    padding: .75rem 1rem;
+    border-radius: .5rem;
+    font-weight: var(--font-medium);
+    transition: .4s;
 }
