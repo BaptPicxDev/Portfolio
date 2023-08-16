@@ -602,6 +602,16 @@ img{
     transform: translateX(.25rem);
 }
 
+.contact__img{
+    margin-top: 2rem;
+    width: 300px;
+    border-radius: 2rem;
+    margin-bottom: 1.25rem;
+    /* -webkit-filter: brightness(0.5);
+    filter: brightness(0.5); */
+}
+
+
 /* Footer */
 .footer__container{
     padding: 3rem 0 7rem;
