@@ -12,9 +12,7 @@
     --text-color-light: hsl(207, 4%, 56%);
     --body-color: hsl(207, 4%, 95%);
     --container-color: hsl(240, 5%, 92%);
-    --gradient-color: linear-gradient(180deg,
-                        hsl(207, 48%, 72%, 0),
-                        hsl(207, 65%, 65%, ));
+    --gradient-color: linear-gradient(hsla(207, 48%, 72%, 0), hsla(207, 65%, 65%, 1));
 
     /* Font / Typo */
     --body-family: 'Poppins', sans-serif;
@@ -256,12 +254,12 @@ img{
 .home__perfil{
     width: 170px;
     height: 260px;
-    background: var(--gradient-color);
     border-radius: 5.5rem;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    background: var(--gradient-color);
 }
 
 .home__perfil img{
@@ -603,6 +601,16 @@ img{
 .contact__button:hover i{
     transform: translateX(.25rem);
 }
+
+.contact__img{
+    margin-top: 2rem;
+    width: 300px;
+    border-radius: 2rem;
+    margin-bottom: 1.25rem;
+    /* -webkit-filter: brightness(0.5);
+    filter: brightness(0.5); */
+}
+
 
 /* Footer */
 .footer__container{
