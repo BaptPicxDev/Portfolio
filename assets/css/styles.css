@@ -1132,7 +1132,7 @@ body.dark-theme{
 	}
 
     .slide-track {
-		animation: scroll 30s linear infinite;
+		animation: scroll 45s linear infinite;
 		display: flex;
 		width: calc(250px * 6);
         overflow: hidden;
