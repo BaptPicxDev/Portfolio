@@ -1098,7 +1098,7 @@ body.dark-theme{
 /* Animation */
 @keyframes scroll {
 	0% { transform: translateX(500px); }
-	100% { transform: translateX(calc(-250px * 2))}
+	100% { transform: translateX(calc(-230px * 2))}
 }
 
 .photography__container {
