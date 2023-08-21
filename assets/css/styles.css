@@ -828,6 +828,7 @@ body.dark-theme{
     }
     .skills__container,
     .qualification__container,
+    .photography__container,
     .contact__container{
         grid-template-columns: repeat(2, max-content);
     }
@@ -836,6 +837,10 @@ body.dark-theme{
         column-gap: 5rem;
     }
     .qualification__container{
+        justify-content: center;
+        column-gap: 10rem;
+    }
+    .photography__container{
         justify-content: center;
         column-gap: 10rem;
     }
@@ -978,10 +983,12 @@ body.dark-theme{
     .qualification__container{
         column-gap: 14rem;
     }
-    .qualification__title{
+    .qualification__title,
+    .photography__title{
         margin-bottom: 3rem;
     }
-    .qualification__title i{
+    .qualification__title i,
+    .photography__title i{
         font-size: 1.25rem;
     }
     .qualification__name{
@@ -1054,4 +1061,92 @@ body.dark-theme{
     transition: .4s;
 }
 
-/* kaggle icon */
+/* photography */
+/* .photography{
+    position: relative;
+}
+
+.photography__container{
+    row-gap: 3.5rem;
+}
+
+.photography__title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5rem;
+    font-size: var(--small-font-size);
+    font-weight: var(--font-semi-bold);
+    margin-bottom: 2rem;
+}
+
+.photography__title i{
+    font-size: 1rem;
+    font-weight: initial;
+}
+
+.photography__info{
+    display: grid;
+    row-gap: 2rem;
+}
+
+.photography__button{
+    display: grid;
+    row-gap: 2rem;
+} */
+
+/* Animation */
+@keyframes scroll {
+	0% { transform: translateX(500px); }
+	100% { transform: translateX(calc(-250px * 2))}
+}
+
+.photography__container {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.slider{
+    display: flex;
+	background: var(--body-color);
+	height: 150px;
+	width: calc(250px * 6);
+	position: relative;
+
+    &::before,
+	&::after {
+		position: absolute;
+		z-index: 2;
+	}
+	
+	&::after {
+		right: 0;
+		top: 0;
+		transform: rotateZ(180deg);
+	}
+
+	&::before {
+		left: 0;
+		top: 0;
+	}
+
+    .slide-track {
+		animation: scroll 5s linear infinite;
+		display: flex;
+		width: calc(250px * 6);
+        overflow: hidden;
+	}
+}
+
+.slide{
+    background-color: var(--body-color);
+    margin: 6px;
+    padding: 10px;
+    height: 140px;
+    width: 250px;
+}
+
+.slide:hover{
+    transform: translateY(-.75rem);
+}
