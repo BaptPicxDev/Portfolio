@@ -23,3 +23,5 @@ EmailJS: https://www.emailjs.com/
 Futur deployment: https://vercel.com/pricing
 
 Scroll reveal: https://github.com/jlmakes/scrollreveal
+
+FAVICON: https://icons8.com/icons
