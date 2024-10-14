@@ -26,7 +26,7 @@ jobs:
           publish_dir: ./
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-        # env:
-        #   EMAIL_SERVICE_ID: ${{ secrets.SERVICE_ID }}
-        #   EMAIL_TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
-        #   EMAIL_PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
+        env:
+          EMAIL_SERVICE_ID: ${{ secrets.SERVICE_ID }}
+          EMAIL_TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
+          EMAIL_PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
