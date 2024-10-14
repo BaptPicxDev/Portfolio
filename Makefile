@@ -9,7 +9,7 @@ help:
 		awk 'BEGIN {FS = "(: |##)"}; {printf "\033[36m%-30s\033[0m %s\n", $$2, $$3}'
 
 .PHONY: create-tag
-create-tag:
+create-tag: ## Create and push git tag
 	if [ -z ${tag} ] || [ -z ${msg} ]; then
 		echo "You should provide a tag and a msg."
 		echo "Like following 'make create-tag tag=v0.1 msg=test_tag'"
