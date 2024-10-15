@@ -1197,14 +1197,23 @@ body.dark-theme{
 }
 
 .article__image{
+    align-items: center;
     display: flex;
     justify-content: center;
-    width: 50%;
-    background-color: var(--container-color);
+    width: 40%;
     border-radius: 0.25rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    transition: background .4s; /* for dark mode animation*/
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.mermaid__image{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 /* Video Container for Responsive YouTube Embedding */

@@ -133,66 +133,51 @@
 
                         <section class="article__block">
                             <h3 class="article__heading">The API & A/B testing.</h3>
-                            <div>
-                                Once model are developped and validated, an important part is to make them accessible.
-                                For this, I created an API which is an Application interface.
-                                The idea is to allow user to send a request - which is a song they want the category to be predicted.
-
-                                Once the song is received, a Task is created and the song is properly uploaded within the system.
-                                As soon as the Task is created (for this is use a FIFO queue), a worker is able to handle it properly and to apply processing to it before prediction.
-
-                                <div class="mermaid">
-                                graph LR
-                                    user[User]-->|send .wav song|lb
-                                    subgraph AWS ECS
-                                        subgraph API
-                                            lb[Load balancer]-->|50%|api1[Endpoint MIR]
-                                            lb-->|50%|api2[Endpoint CNN]
-                                            api1-->|Create task|queue[FIFO Queue]
-                                            api2-->|Create task|queue
-                                            api3[Status endpoint]
-                                        end
-                                        subgraph AI
-                                            ai[AI Engine]-->|Read task|queue
-                                            ai-->|Compute song category|ai
-                                            ai-->|Save category into database|db[Database]
-                                        end
+                            <p>Once model are developped and validated, an important part is to make them accessible. For this, I created an API which is an Application interface.</p>
+                            <p>The idea is to allow user to send a request - which is a song they want the category to be predicted. Once the song is received, a Task is created and the song is properly uploaded within the system.</p>
+                            <p>As soon as the Task is created (for this is use a FIFO queue), a worker is able to handle it properly and to apply processing to it before prediction.</p>
+                            <div class="mermaid mermaid__image">
+                            graph LR
+                                user[User]-->|send .wav song|lb
+                                subgraph AWS ECS
+                                    subgraph API
+                                        lb[Load balancer]-->|50%|api1[Endpoint MIR]
+                                        lb-->|50%|api2[Endpoint CNN]
+                                        api1-->|Create task|queue[FIFO Queue]
+                                        api2-->|Create task|queue
+                                        api3[Status endpoint]
                                     end
-                                    user-->|Reading status|api3-->db
-                                </div>
-                                In the meanwhile, the user is able to request the status of the task.
-                                This way of doing is important to ensure atomicity.
-                                It is also a way of parallelizing the Task and ensuring that our system is reliable.
-
-                                Once our worker have predicted the category, the user can get it through /status endpoint.
-                                
-                                <div class="mermaid">
-                                    sequenceDiagram
-                                        User ->> API: POST .wav song through API
-                                        API ->> Queue: Create a task
-                                        activate Queue
-                                        Queue -->> API: Task created
-                                        deactivate Queue
-                                        API -->> User: Send task UUID
-                                        Note right of Queue: FIFO Queue
-                                        
-                                        AI Engine ->> Queue: Read task
-                                        Note right of AI Engine: MIR or CNN model
-                                        activate AI Engine
-                                        AI Engine ->> AI Engine: Compute the song category
-                                        deactivate AI Engine
-                                        
-                                        AI Engine -->> Database: Update song category
-                                        User -->> Database: Read song status / category
-                                    </div>
-
-                                My API contains a swagger, which allow users to know which endpoints are accessible.
-
-                                On top of this, there is an A/B testing strategy. There is an unique endpoint to request classification.
-                                While requesting it, you have 50% chance that your song will be classify by CNN model, 50% for teh random forest.
-
-                                Finally, the API is dockerize within Docker (and pushed to docker hub) and is usable by AWS ECS for deployement.
+                                    subgraph AI
+                                        ai[AI Engine]-->|Read task|queue
+                                        ai-->|Compute song category|ai
+                                        ai-->|Save category into database|db[Database]
+                                    end
+                                end
+                                user-->|Reading status|api3-->db
                             </div>
+                            <p>In the meanwhile, the user is able to request the status of the task. This way of doing is important to ensure atomicity. It is also a way of parallelizing the Task and ensuring that our system is reliable.</p>
+                            <p>Once our worker have predicted the category, the user can get it through /status endpoint.</p>
+                            <div class="mermaid mermaid__image">
+                                sequenceDiagram
+                                    User ->> API: POST .wav song through API
+                                    API ->> Queue: Create a task
+                                    activate Queue
+                                    Queue -->> API: Task created
+                                    deactivate Queue
+                                    API -->> User: Send task UUID
+                                    Note right of Queue: FIFO Queue
+                                    
+                                    AI Engine ->> Queue: Read task
+                                    Note right of AI Engine: MIR or CNN model
+                                    activate AI Engine
+                                    AI Engine ->> AI Engine: Compute the song category
+                                    deactivate AI Engine
+                                    
+                                    AI Engine -->> Database: Update song category
+                                    User -->> Database: Read song status / category
+                            </div>
+                            <p>My API contains a swagger, which allow users to know which endpoints are accessible.</p>
+                            <p>On top of this, there is an A/B testing strategy. There is an unique endpoint to request classification. While requesting it, you have 50% chance that your song will be classify by CNN model, 50% for teh random forest. Finally, the API is dockerize within Docker (and pushed to docker hub) and is usable by AWS ECS for deployement.</p>
                         </section>
                         
                         <section class="article__block">
