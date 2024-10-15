@@ -1164,6 +1164,8 @@ body.dark-theme{
     display: grid;
     row-gap: 1rem;
     margin-bottom: 1rem;
+    font-size: var(--font-medium);
+    font-weight: var(--body-font);
 }
 
 .article__heading{
@@ -1185,11 +1187,6 @@ body.dark-theme{
     margin-bottom: 2rem;
 }
 
-.article__content{
-    font-size: var(--font-medium);
-    font-weight: var(--body-font);
-}
-
 .aimodel__title{
     display: flex;
     justify-content: center;
@@ -1200,9 +1197,11 @@ body.dark-theme{
 }
 
 .article__image{
-    width: 25%;
+    display: flex;
+    justify-content: center;
+    width: 50%;
     background-color: var(--container-color);
-    border-radius: 3rem;
+    border-radius: 0.25rem;
     margin-bottom: 1rem;
     margin-top: 1rem;
     transition: background .4s; /* for dark mode animation*/

@@ -120,32 +120,17 @@
                         <section class="article__block">
                             <h3 class="article__heading">Artificial intelligence models development.</h3>
                             <p>Here is presented the 2 distinct models.</p>
-                            <div class="aimodel cnn">
-                                <h4 class="aimodel__title">CNN model</h4>
-                                <div class="aimodel__content">
-                                    For this model, I transform .wav songs into spectrogram.
-                                    A spectrogram represents at time-frequency levels.
-                                    For this we use FFT (Fast Fourier Transform).
+                            <h4 class="article__heading">Convolutional neural network.</h4>
+                            <p>For this model, I transform .wav songs into spectrogram. A spectrogram represents at time-frequency levels. For this we use FFT (Fast Fourier Transform).</p>
+                            <img src="assets/img/fft.png" class="article__image">
+                            <p>Once we get the spectrogram at the right format (not too big images, neither too long), I train the model where each batch of images got through several layers of convolutional neuron layers. When this is done, we propagate the error (comming from the classification of the images) along the neural weights. With the rights hyperparameters, we are able to achieve a good result.</p>
+                            <img src="assets/img/spectrogram.png" class="article__image">
 
-                                    Once we get the spectrogram at the right format (not too big images, neither too long),
-                                    We train a CNN (Convolutional Neural Network) where each batch of images got through several layers of convolutional networks.
-                                    When this is done, we propagate the error (comming from the classification of the images) along the neural weights.
-
-                                    With the rights hyperparameters, we are able to achieve a good result.
-                                </div>
-                            </div>
-                            <div class="aimodel mir">
-                                <h4 class="aimodel__title">Random Forest model</h4>
-                                <div class="aimodel__content">
-                                    In another hand, instead of transforming the song into images, we choose to use MIR.
-                                    MIR means Music Information Retrieval.
-                                    This allow us to get some music information like tempo, accounsticness, etc.
-
-                                    Once we get this information, I developped a Random Forest model.
-                                </div>
-                            </div>
+                            <h4 class="article__heading">Random Forest.</h4>
+                            <p>In another hand, instead of transforming the song into images, we choose to use MIR (Music Information Retrieval) to retrieve some features, music information like tempo, chromas, bandwidth, etc.
+                            <p>Once I get this information, I am able to train a Random Forest model.</p>
                         </section>
-                        
+
                         <section class="article__block">
                             <h3 class="article__heading">The API & A/B testing.</h3>
                             <div>
