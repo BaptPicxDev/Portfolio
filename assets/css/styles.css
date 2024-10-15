@@ -1198,3 +1198,12 @@ body.dark-theme{
     font-weight: var(--font-semi-bold);
     margin-bottom: 0.5rem;
 }
+
+.article__image{
+    width: 25%;
+    background-color: var(--container-color);
+    border-radius: 3rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    transition: background .4s; /* for dark mode animation*/
+}
