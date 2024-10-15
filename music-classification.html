@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--=============== FAVICON ===============-->
+        <link rel="shortcut icon" href="assets/img/home.png" type="image/x-icon">
+
+        <!--=============== REMIXICONS ===============-->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+        <!-- Iconset -->
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+        <!--=============== Swiper ===================-->
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="assets/css/styles.css">
+
+        <title>Responsive portfolio website Baptiste PICARD</title>
+    </head>
+    <body>
+        <!--==================== HEADER ====================-->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="#" class="nav__logo">
+                    Baptiste
+                </a>
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list grid">
+                        <li class="nav__items">
+                            <a href="index.html#home" class="nav__link active-link">
+                                <i class="ri-home-5-line"></i> Home
+                            </a>
+                        </li>
+
+                        <li class="nav__items">
+                            <a href="index.html#skills" class="nav__link">
+                                <i class="ri-award-line"></i> Skills
+                            </a>
+                        </li>
+
+                        <li class="nav__items">
+                            <a href="index.html#qualification" class="nav__link">
+                                <i class="ri-book-open-line"></i> Qualifications
+                            </a>
+                        </li>
+
+                        <li class="nav__items">
+                            <a href="index.html#projects" class="nav__link">
+                                <i class="ri-camera-3-line"></i> Projects
+                            </a>
+                        </li>
+
+                        <li class="nav__items">
+                            <a href="index.html#photography" class="nav__link">
+                                <i class="ri-camera-line"></i> Photography
+                            </a>
+                        </li>
+
+                        <li class="nav__items">
+                            <a href="index.html#contact" class="nav__link">
+                                <i class="ri-chat-3-line"></i> Contact
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="nav__close" id="nav-close">
+                        <!--Close button-->
+                        <i class="ri-close-line"></i>
+                    </div>
+                </div>
+                <div class="nav__buttons">
+                    <!-- Theme change button -->
+                    <i class="ri-moon-line change-theme" id="theme-button"></i>
+
+                    <!-- Toggle button-->
+                    <div class="nav__toggle" id="nav-toggle">
+                        <i class="ri-menu-line"></i>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!--==================== MAIN ====================-->
+        <main class="main">
+            <section class="article section" id="article">
+                <h2 class="section__title">Music classification using AI</h2>
+                <span class="section__subtitle">Developping AI algorithms within a full data Engineering environment.</span>
+                <div class="section__readingtime"><strong>Time to read:</strong> 10 minutes</div>
+
+                <div class="article__container container grid section__border">
+                    <div class="article__content">
+                        <div class="article__info">
+                            <h3 class="article__title">
+                                <i class="ri-pencil-line"></i> General presentation
+                            </h3>
+                            <div>
+                                This project started in 2019 when I was studying in Mendoza, Argentina.
+                                My thesis project was about signal processing and artificial intelligence.
+                                I choosed to develop my own CNN model using GTZAN dataset.
+                                I also wanted to challenge this method using MIR (Music Information Retrieval = Music features) & Random forest model.
+    
+                                More recently, I started back this project, focusing on Data-Engineering & DevOps topics, building a complete system.
+                                This what I will present you today.
+                            </div>
+                        </div>
+
+                        <div class="article__info">
+                            <h3 class="article__title">
+                                <i class="ri-pencil-line"></i> Data architecture
+                            </h3>
+                            <div>
+                                Here is presented the data architecture for this project.
+
+                                First of all, all the work is done on AWS.
+                                An EC2 instance can be easily instanciated using some Bash script.
+                                For the deployment of a production solution, I use terraform & AWS ECS service.
+
+                                Most of the code is written in Python, using Keras & scikit-learn for the AI models.
+                                Once the code was correctly working, I built docker images to be able to deploy it easily on arm86/amd86 servers.
+
+                                Regarding the data, they are downloaded on Kaggle, using the kaggle API.
+                                While training, my models access a private MLOPs repository on Neptune AI. Every run of a train is tracked.
+
+                                Once the model are built, it is possible to save the weights on AWS S3.
+
+                                Finally, an API is build on top of this to allow to request the prediction of a song category.
+                                In this case, the song is processed & saved on S3 bucket.
+                                The API has his own docker container.
+
+                                Finally the code is versionned using github private repo (if you request me, I can give you a temporary access).
+
+                                Every time a new code is pushed within main branch, several jobs runs along the CICD pipeline (github actions).
+                                It ensures code quality, code coverage regarding unittest, but also documentation generation (and deploy on github pages static html site).
+
+                                Once everything is validated, a new git taag is created.                               
+                            </div>
+                        </div>
+                        
+                        <div class="article__info">
+                            <h3 class="article__title">
+                                <i class="ri-pencil-line"></i> AI models
+                            </h3>
+                            <div>Here is presented the 2 distinct models.</div>
+                            <div class="aimodel cnn">
+                                <h4 class="aimodel__title">CNN model</h4>
+                                <div class="aimodel__content">
+                                    For this model, I transform .wav songs into spectrogram.
+                                    A spectrogram represents at time-frequency levels.
+                                    For this we use FFT (Fast Fourier Transform).
+
+                                    Once we get the spectrogram at the right format (not too big images, neither too long),
+                                    We train a CNN (Convolutional Neural Network) where each batch of images got through several layers of convolutional networks.
+                                    When this is done, we propagate the error (comming from the classification of the images) along the neural weights.
+
+                                    With the rights hyperparameters, we are able to achieve a good result.
+                                </div>
+                            </div>
+                            <div class="aimodel mir">
+                                <h4 class="aimodel__title">Random Forest model</h4>
+                                <div class="aimodel__content">
+                                    In another hand, instead of transforming the song into images, we choose to use MIR.
+                                    MIR means Music Information Retrieval.
+                                    This allow us to get some music information like tempo, accounsticness, etc.
+
+                                    Once we get this information, I developped a Random Forest model.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="article__info">
+                            <h3 class="article__title">
+                                <i class="ri-pencil-line"></i> The API & A/B testing.
+                            </h3>
+                            <div>
+                                Once model are developped and validated, an important part is to make them accessible.
+                                For this, I created an API which is an Application interface.
+                                The idea is to allow user to send a request - which is a song they want the category to be predicted.
+
+                                Once the song is received, a Task is created and the song is properly uploaded within the system.
+                                As soon as the Task is created (for this is use a FIFO queue), a worker is able to handle it properly and to apply processing to it before prediction.
+
+                                In the meanwhile, the user is able to request the status of the task.
+                                This way of doing is important to ensure atomicity.
+                                It is also a way of parallelizing the Task and ensuring that our system is reliable.
+
+                                Once our worker have predicted the category, the user can get it through /status endpoint.
+
+                                My API contains a swagger, which allow users to know which endpoints are accessible.
+
+                                On top of this, there is an A/B testing strategy. There is an unique endpoint to request classification.
+                                While requesting it, you have 50% chance that your song will be classify by CNN model, 50% for teh random forest.
+
+                                Finally, the API is dockerize within Docker (and pushed to docker hub) and is usable by AWS ECS for deployement.
+                            </div>
+                        </div>
+                        
+                        <div class="article__info">
+                            <h3 class="article__title">
+                                <i class="ri-pencil-line"></i> The code versionning, MLOPS & CI/CD cycle.
+                            </h3>
+                            <div>
+                                During the development of the project, I use git to store and to version my code.
+                                For this, I use several branches. The main ones are 'main' & 'dev'.
+
+                                Everytime I want to create a new feature, I create a branch using the 'dev' one.
+                                One my developments are finished and validated, I can merge my feature branch into the 'dev' one;
+                                Once I develop several features and once they are merge into 'dev', I can merge 'dev' into 'main'.
+
+                                I am then able to create a new version and I am able to push my docker images to my private docker hub.
+                                Once they are pushed, my CI/CD generates the documentation using Spinx. This documentation (static .html page) is pushed to github pages.
+
+                                As I presented it, there is several jobs in the CI/CD:
+                                
+                                <ul>
+                                    <li>The job to generate the different docker images and to push them to dockerhub.</li>
+                                    <li>The job to generate and deploy the project documentation.</li>
+                                    <li>The job to control the quality of the Python code.</li>
+                                    <li>The job to control the quality of the Dockerfiles.</li>
+                                    <li>The job to run unittests / integration tests / end-to-end tests.</li>
+                                </ul>
+
+                                To continue on the monitoring side, we can also talk about MLOps, that is fully integrated durring model training, to keep track
+                                of every model run.
+                            </div>
+                        </div>
+                        
+                        <div class="article__info">
+                            <h3 class="article__title">
+                                <i class="ri-pencil-line"></i>Cloud usage and deployment.
+                            </h3>
+                            <div>
+                                Finally, it was really important for me to work on AWS cloud to prove my skills.
+
+                                I started to develop several scripts to be able to instanciate some private EC2 resource to develop my algorithm.
+                                It was really important for me to work with short production cycles, an usual requirements while working as Data Engineer.
+
+                                Once my solutions were getting ready, I created Docker images to be able to deploy whatever solution I want on AWS ECS.
+
+                                To facilitate this, and to be able to re-use it (important Data Engineer skill), I used an IAC solution (Infrastructure as Code): Terraform.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+        </main>
+
+        <!--==================== FOOTER ====================-->
+        <footer class="footer">
+            <div class="footer__container container">
+                <h1 class="footer__title">Baptiste</h1>
+                <p>Data Engineer</p>
+
+                <ul class="footer__list">
+                    <li>
+                        <a href="index.html#home" class="footer__link">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#skills" class="footer__link">Skills</a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#qualification" class="footer__link">Qualification</a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#projects" class="footer__link">Projects</a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#photography" class="footer__link">Photography</a>
+                    </li>
+                </ul>
+
+                <ul class="footer__social">
+                    <a href="https://www.linkedin.com/in/baptiste-picard-b3a26b158" target="_blank" class="footer__social-link">
+                        <i class="ri-linkedin-box-line"></i>
+                    </a>
+
+                    <a href="https://github.com/BaptPicxDev" target="_blank" class="footer__social-link">
+                        <i class="ri-github-line"></i>
+                    </a>
+                    <a href="https://stackoverflow.com/users/9947412/picxyb" target="_blank" class="home__social-link">
+                        <i class="ri-stack-line"></i>
+                    </a>
+                    <a href="https://www.kaggle.com/niscreed" target="_blank" class="home__social-link">
+                        <iconify-icon icon="la:kaggle"></iconify-icon>
+                    </a>
+                    <a href="https://picardbaptiste.darkroom.com/" target="_blank" class="home__social-link">
+                        <i class="ri-camera-lens-line"></i>
+                    </a>
+                </ul>
+
+                <span class="footer__copy">
+                    &#169; Copyrighy BaptPicxDev. All rights reserved.
+                </span>
+            </div>
+        </footer>
+
+
+        <!--========== SCROLL UP ==========-->
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class="ri-arrow-up-line"></i>
+        </a>
+
+        <!--=============== SCROLLREVEAL ===============-->
+        <script src="assets/js/scrollreveal.min.js"></script>
+
+        <!--=============== SWIPER JS ===============-->
+        <script src="assets/js/swiper-bundle.min.js"></script>
+
+        <!--=============== MAIN JS ===============-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
