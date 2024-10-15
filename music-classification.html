@@ -182,44 +182,22 @@
                         
                         <section class="article__block">
                             <h3 class="article__heading">The code versionning, MLOPS & CI/CD cycle.</h3>
-                            <div>
-                                During the development of the project, I use git to store and to version my code.
-                                For this, I use several branches. The main ones are 'main' & 'dev'.
-
-                                Everytime I want to create a new feature, I create a branch using the 'dev' one.
-                                One my developments are finished and validated, I can merge my feature branch into the 'dev' one;
-                                Once I develop several features and once they are merge into 'dev', I can merge 'dev' into 'main'.
-
-                                I am then able to create a new version and I am able to push my docker images to my private docker hub.
-                                Once they are pushed, my CI/CD generates the documentation using Spinx. This documentation (static .html page) is pushed to github pages.
-
-                                As I presented it, there is several jobs in the CI/CD:
-                                
-                                <ul>
-                                    <li>The job to generate the different docker images and to push them to dockerhub.</li>
-                                    <li>The job to generate and deploy the project documentation.</li>
-                                    <li>The job to control the quality of the Python code.</li>
-                                    <li>The job to control the quality of the Dockerfiles.</li>
-                                    <li>The job to run unittests / integration tests / end-to-end tests.</li>
-                                </ul>
-
-                                To continue on the monitoring side, we can also talk about MLOps, that is fully integrated durring model training, to keep track
-                                of every model run.
-                            </div>
+                            <p>During the development of the project, I use git to store and to version my code. For this, I use several branches. The main ones are 'main' & 'dev'. Everytime I want to create a new feature, I create a new feature branch coming from the 'dev' one. As soon as my developments are finished and validated, I can merge them into the 'dev' one. Once I want to release a new version of the app, I can merge 'dev' into 'main'.</p>
+                            <p>After, I am able to create a new version and to push my docker images to my private Dockerhub. Then, my CI/CD generates the documentation using Spinx. This documentation (static .html page) is then pushed to github pages.</p>
+                            <p>I presented it, there is several jobs in the CI/CD:</p>
+                            <ul class="article__list">
+                                <li class="article__list__item">The job to generate the different docker images and to push them to dockerhub.</li>
+                                <li class="article__list__item">The job to generate and deploy the project documentation.</li>
+                                <li class="article__list__item">The job to control the quality of the Python code.</li>
+                                <li class="article__list__item">The job to control the quality of the Dockerfiles.</li>
+                                <li class="article__list__item">The job to run unittests / integration tests / end-to-end tests.</li>
+                            </ul>
+                            <p>To continue on the monitoring side, we can also talk about MLOps, that is fully integrated durring model training, to keep track of every model run.</p>
                         </section>
                         
                         <section class="article__block">
-                            <h2 class="article__heading">Cloud usage and deployment.</h3>
-                            <div>
-                                Finally, it was really important for me to work on AWS cloud to prove my skills.
-
-                                I started to develop several scripts to be able to instanciate some private EC2 resource to develop my algorithm.
-                                It was really important for me to work with short production cycles, an usual requirements while working as Data Engineer.
-
-                                Once my solutions were getting ready, I created Docker images to be able to deploy whatever solution I want on AWS ECS.
-
-                                To facilitate this, and to be able to re-use it (important Data Engineer skill), I used an IAC solution (Infrastructure as Code): Terraform.
-                            </div>
+                            <h3 class="article__heading">Cloud usage and deployment.</h3>
+                            <p>Finally, it was really important for me to work on AWS cloud to prove my skills. I started to develop several scripts to be able to instanciate some private EC2 resource to develop my algorithm. It was really important for me to work with short production cycles, an usual requirements while working as Data Engineer. Once my solutions were getting ready, I created Docker images to be able to deploy whatever solution I want on AWS ECS. To facilitate this, and to be able to re-use it (important Data Engineer skill), I used an IAC solution (Infrastructure as Code): Terraform.</p>
                         </section>
 
                         <!-- Conclusion Section -->
