@@ -2,6 +2,7 @@
 *.pyc
 gh-pages
 *.pub
+*.DS_store
 
 .git/
 *.zip

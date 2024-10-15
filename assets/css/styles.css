@@ -1160,13 +1160,13 @@ body.dark-theme{
     row-gap: 3.5rem;
 }
 
-.article__info{
+.article__block{
     display: grid;
     row-gap: 1rem;
     margin-bottom: 1rem;
 }
 
-.article__title{
+.article__heading{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1206,4 +1206,22 @@ body.dark-theme{
     margin-bottom: 1rem;
     margin-top: 1rem;
     transition: background .4s; /* for dark mode animation*/
+}
+
+/* Video Container for Responsive YouTube Embedding */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000; /* Optional: Background color */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }

@@ -19,6 +19,13 @@
         <!--=============== CSS ===============-->
         <link rel="stylesheet" href="assets/css/styles.css">
 
+        <!--=============== Markdown ===============-->
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script type="module">
+            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+
         <title>Responsive portfolio website Baptiste PICARD</title>
     </head>
     <body>
@@ -92,62 +99,27 @@
 
                 <div class="article__container container grid section__border">
                     <div class="article__content">
-                        <div class="article__info">
-                            <h3 class="article__title">
-                                <i class="ri-pencil-line"></i> General presentation
-                            </h3>
-                            <div>
-                                This project started in 2019 when I was studying in Mendoza, Argentina.
-                                My thesis project was about signal processing and artificial intelligence.
-                                I choosed to develop my own CNN model using GTZAN dataset.
-                                I also wanted to challenge this method using MIR (Music Information Retrieval = Music features) & Random forest model.
+                        <section class="article__block">
+                            <h3 class="article__heading">General presentation.</h3>
+                            <p>This project started in 2019 when I was studying in Mendoza, Argentina. My thesis project was about signal processing and artificial intelligence. I decided to develop my own CNN model using GTZAN dataset.</p>
+                            <p>I also wanted to challenge this method using MIR (Music Information Retrieval = Music features) & Random forest model.</p>
+                            <p>Recently, I started back this project, focusing on Data-Engineering & DevOps topics, building a complete system. I will show present it in the next sections.</p>
+                            <img src="assets/img/process.png" class="">
+                            <!--<img src="assets/img/experience.jpeg" class="">-->
+                        </section>
 
-                                <img src="assets/img/process.png" class="">
-    
-                                More recently, I started back this project, focusing on Data-Engineering & DevOps topics, building a complete system.
-                                This what I will present you today.
-
-                                <img src="assets/img/experience.jpeg" class="">
-                            </div>
-                        </div>
-
-                        <div class="article__info">
-                            <h3 class="article__title">
-                                <i class="ri-pencil-line"></i> Data architecture
-                            </h3>
-                            <div>
-                                Here is presented the data architecture for this project.
-
-                                First of all, all the work is done on AWS.
-                                An EC2 instance can be easily instanciated using some Bash script.
-                                For the deployment of a production solution, I use terraform & AWS ECS service.
-
-                                Most of the code is written in Python, using Keras & scikit-learn for the AI models.
-                                Once the code was correctly working, I built docker images to be able to deploy it easily on arm86/amd86 servers.
-
-                                Regarding the data, they are downloaded on Kaggle, using the kaggle API.
-                                While training, my models access a private MLOPs repository on Neptune AI. Every run of a train is tracked.
-
-                                Once the model are built, it is possible to save the weights on AWS S3.
-
-                                Finally, an API is build on top of this to allow to request the prediction of a song category.
-                                In this case, the song is processed & saved on S3 bucket.
-                                The API has his own docker container.
-
-                                Finally the code is versionned using github private repo (if you request me, I can give you a temporary access).
-
-                                Every time a new code is pushed within main branch, several jobs runs along the CICD pipeline (github actions).
-                                It ensures code quality, code coverage regarding unittest, but also documentation generation (and deploy on github pages static html site).
-
-                                Once everything is validated, a new git tag is created.                               
-                            </div>
-                        </div>
+                        <section class="article__block">
+                            <h3 class="article__heading">Data architecture.</h3>
+                            <p>Let's start with the data architecture. First, it was important for me to work with cloud solutions.</p>
+                            <p>On dev side, I am able to instanciate an EC2 instance using Bash script. For the deployment of a production solution, I use IAC solution & AWS ECS service.</p>
+                            <p>Once the code was correctly working, I built docker images to be able to deploy it easily on arm86/amd86 servers. Regarding the data, they are downloaded on Kaggle, using the kaggle API. As soon as the models are built, it is possible to save the weights on AWS S3.</p>
+                            <p>Finally, an API is build on top of this to allow to request the prediction of a song category. In this case, the song is processed & saved on S3 bucket. The API has his own docker container.</p>
+                            <p>If everything runs fine, the docker images can be saved on AWS ECR or Docker Hub.</p>
+                        </section>
                         
-                        <div class="article__info">
-                            <h3 class="article__title">
-                                <i class="ri-pencil-line"></i> AI models
-                            </h3>
-                            <div>Here is presented the 2 distinct models.</div>
+                        <section class="article__block">
+                            <h3 class="article__heading">Artificial intelligence models development.</h3>
+                            <p>Here is presented the 2 distinct models.</p>
                             <div class="aimodel cnn">
                                 <h4 class="aimodel__title">CNN model</h4>
                                 <div class="aimodel__content">
@@ -172,12 +144,10 @@
                                     Once we get this information, I developped a Random Forest model.
                                 </div>
                             </div>
-                        </div>
+                        </section>
                         
-                        <div class="article__info">
-                            <h3 class="article__title">
-                                <i class="ri-pencil-line"></i> The API & A/B testing.
-                            </h3>
+                        <section class="article__block">
+                            <h3 class="article__heading">The API & A/B testing.</h3>
                             <div>
                                 Once model are developped and validated, an important part is to make them accessible.
                                 For this, I created an API which is an Application interface.
@@ -186,11 +156,50 @@
                                 Once the song is received, a Task is created and the song is properly uploaded within the system.
                                 As soon as the Task is created (for this is use a FIFO queue), a worker is able to handle it properly and to apply processing to it before prediction.
 
+                                <div class="mermaid">
+                                graph LR
+                                    user[User]-->|send .wav song|lb
+                                    subgraph AWS ECS
+                                        subgraph API
+                                            lb[Load balancer]-->|50%|api1[Endpoint MIR]
+                                            lb-->|50%|api2[Endpoint CNN]
+                                            api1-->|Create task|queue[FIFO Queue]
+                                            api2-->|Create task|queue
+                                            api3[Status endpoint]
+                                        end
+                                        subgraph AI
+                                            ai[AI Engine]-->|Read task|queue
+                                            ai-->|Compute song category|ai
+                                            ai-->|Save category into database|db[Database]
+                                        end
+                                    end
+                                    user-->|Reading status|api3-->db
+                                </div>
                                 In the meanwhile, the user is able to request the status of the task.
                                 This way of doing is important to ensure atomicity.
                                 It is also a way of parallelizing the Task and ensuring that our system is reliable.
 
                                 Once our worker have predicted the category, the user can get it through /status endpoint.
+                                
+                                <div class="mermaid">
+                                    sequenceDiagram
+                                        User ->> API: POST .wav song through API
+                                        API ->> Queue: Create a task
+                                        activate Queue
+                                        Queue -->> API: Task created
+                                        deactivate Queue
+                                        API -->> User: Send task UUID
+                                        Note right of Queue: FIFO Queue
+                                        
+                                        AI Engine ->> Queue: Read task
+                                        Note right of AI Engine: MIR or CNN model
+                                        activate AI Engine
+                                        AI Engine ->> AI Engine: Compute the song category
+                                        deactivate AI Engine
+                                        
+                                        AI Engine -->> Database: Update song category
+                                        User -->> Database: Read song status / category
+                                    </div>
 
                                 My API contains a swagger, which allow users to know which endpoints are accessible.
 
@@ -199,12 +208,10 @@
 
                                 Finally, the API is dockerize within Docker (and pushed to docker hub) and is usable by AWS ECS for deployement.
                             </div>
-                        </div>
+                        </section>
                         
-                        <div class="article__info">
-                            <h3 class="article__title">
-                                <i class="ri-pencil-line"></i> The code versionning, MLOPS & CI/CD cycle.
-                            </h3>
+                        <section class="article__block">
+                            <h3 class="article__heading">The code versionning, MLOPS & CI/CD cycle.</h3>
                             <div>
                                 During the development of the project, I use git to store and to version my code.
                                 For this, I use several branches. The main ones are 'main' & 'dev'.
@@ -229,12 +236,10 @@
                                 To continue on the monitoring side, we can also talk about MLOps, that is fully integrated durring model training, to keep track
                                 of every model run.
                             </div>
-                        </div>
+                        </section>
                         
-                        <div class="article__info">
-                            <h3 class="article__title">
-                                <i class="ri-pencil-line"></i>Cloud usage and deployment.
-                            </h3>
+                        <section class="article__block">
+                            <h2 class="article__heading">Cloud usage and deployment.</h3>
                             <div>
                                 Finally, it was really important for me to work on AWS cloud to prove my skills.
 
@@ -245,25 +250,26 @@
 
                                 To facilitate this, and to be able to re-use it (important Data Engineer skill), I used an IAC solution (Infrastructure as Code): Terraform.
                             </div>
-                        </div>
-                        
-                        <div class="article__info">
-                            <h3 class="article__title">
-                                <i class="ri-pencil-line"></i>Conclusion.
-                            </h3>
-                            <div>
-                                If you want to know more you can check my youtube video or ask me for an interview.    
+                        </section>
+
+                        <!-- Conclusion Section -->
+                        <section class="article__block">
+                            <h2 class="article__heading">Conclusion</h2>
+                            <p>If you'd like to learn more, watch the full presentation below:</p>
+                            
+                            <!-- YouTube Video Embed -->
+                            <div class="video-container">
+                                <iframe width="560" height="315" 
+                                        src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+                                        title="YouTube video player" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                </iframe>
                             </div>
-                        </div>
-                        
-                        <div class="article__info">
-                            <h3 class="article__title">
-                                <i class="ri-pencil-line"></i>Youtube presentation of the project.
-                            </h3>
-                            <div>
-                                If you want to know more you can check my youtube video or ask me for an interview.    
-                            </div>
-                        </div>
+                            
+                            <p>Alternatively, feel free to request an interview if you'd like more insights.</p>
+                        </section>
                     </div>
                 </div>
                 
