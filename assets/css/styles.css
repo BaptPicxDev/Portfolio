@@ -15,8 +15,8 @@
     --gradient-color: linear-gradient(hsla(207, 48%, 72%, 0), hsla(207, 65%, 65%, 1));
 
     /* Font / Typo */
-    --body-family: 'Poppins', sans-serif;
-    --title-family: 'Poppins', sans-serif;
+    --body-family: 'Roboto', sans-serif;
+    --title-family: 'Roboto', sans-serif;
     --biggest-font-size: 1.5rem;
     --h1-font-size: 1.5rem;
     --h2-font-size: 1.25rem;
@@ -27,6 +27,7 @@
     --tiny-font-size: .625rem;
 
     /*========== Font weight ==========*/
+    --font-small: 400;
     --font-medium: 500;
     --font-semi-bold: 600;
   
@@ -62,7 +63,7 @@ html{
 }
 
 body{
-    font-family: var(--body-font);
+    font-family: var(--body-family);
     font-size: var(--normal-font-size);
     background-color: var(--body-color);
     color: var(--text-color);
@@ -1158,6 +1159,7 @@ body.dark-theme{
 /* Article */
 .article{
     position: relative;
+    justify-content: left; /* Aligns text to the left */
 }
 
 .article__container{
@@ -1170,6 +1172,7 @@ body.dark-theme{
     margin-bottom: 1rem;
     font-size: var(--font-medium);
     font-weight: var(--body-font);
+    font-family: var(--body-family);
 }
 
 .article__heading{
@@ -1179,7 +1182,8 @@ body.dark-theme{
     column-gap: .5rem;
     font-size: var(--h3-font-size);
     font-weight: var(--font-semi-bold);
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--text-color-light);
 }
 
 .section__readingtime{
@@ -1197,27 +1201,29 @@ body.dark-theme{
     align-items: center;
     font-size: var(--h4-font-size);
     font-weight: var(--font-semi-bold);
-    margin-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: none;
 }
 
+.mermaid__image,
 .article__image{
-    align-items: center;
-    display: flex;
+    display: block;
     justify-content: center;
     width: 40%;
     border-radius: 0.25rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.1rem;
     margin-top: 0.5rem;
 }
 
-.mermaid__image{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    width: 40%;
-    border-radius: 0.25rem;
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
+.article__image__title{
+    text-align: center;
+    font-size: var(--smaller-font-size);
+    font-style: var(--text-color-light);
+    font-weight: var(--font-small);
+    font-style: italic;
+    margin-bottom: 1rem;
+    padding: 5px 10px;        /* Padding around the subtitle */
+    text-align: center;   
 }
 
 /* Video Container for Responsive YouTube Embedding */
