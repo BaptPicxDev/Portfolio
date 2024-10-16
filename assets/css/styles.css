@@ -1137,6 +1137,10 @@ body.dark-theme{
 		width: calc(250px * 6);
         overflow: hidden;
 	}
+
+    .article__list li {
+        font-size: 14px;
+    }
 }
 
 .slide{
@@ -1149,4 +1153,98 @@ body.dark-theme{
 
 .slide:hover{
     transform: translateY(-.75rem);
+}
+
+/* Article */
+.article{
+    position: relative;
+}
+
+.article__container{
+    row-gap: 3.5rem;
+}
+
+.article__block{
+    display: grid;
+    row-gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: var(--font-medium);
+    font-weight: var(--body-font);
+}
+
+.article__heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5rem;
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-semi-bold);
+    margin-bottom: 1rem;
+}
+
+.section__readingtime{
+    text-align: center;
+    font-size: var(--small-font-size);
+    font-weight: var(--font-semi-bold);
+    font-style: italic;
+    column-gap: .5rem;
+    margin-bottom: 2rem;
+}
+
+.aimodel__title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--h4-font-size);
+    font-weight: var(--font-semi-bold);
+    margin-bottom: 0.5rem;
+}
+
+.article__image{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.mermaid__image{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+/* Video Container for Responsive YouTube Embedding */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000; /* Optional: Background color */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.article__list {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.article__list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.5;
 }
