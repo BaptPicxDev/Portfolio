@@ -26,6 +26,9 @@
             mermaid.initialize({ startOnLoad: true });
         </script>
 
+        <!--=============== Roboto font ===============-->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
         <title>Responsive portfolio website Baptiste PICARD</title>
     </head>
     <body>
@@ -106,6 +109,7 @@
                             <p>I also wanted to challenge this method using MIR (Music Information Retrieval = Music features) & Random forest model.</p>
                             <p>Recently, I started back this project, focusing on Data-Engineering & DevOps topics, building a complete system. I will show present it in the next sections.</p>
                             <img src="assets/img/process.png" class="article__image">
+                            <p class="article__image__title">General presentation of the process</p>
                         </section>
 
                         <!-- Architecture Section -->
@@ -125,8 +129,10 @@
                             <h4 class="article__heading">Convolutional neural network.</h4>
                             <p>For this model, I transform .wav songs into spectrogram. A spectrogram represents at time-frequency levels. For this we use FFT (Fast Fourier Transform).</p>
                             <img src="assets/img/fft.png" class="article__image">
+                            <p class="article__image__title">Fast Fourier Transform schema</p>
                             <p>Once we get the spectrogram at the right format (not too big images, neither too long), I train the model where each batch of images got through several layers of convolutional neuron layers. When this is done, we propagate the error (comming from the classification of the images) along the neural weights. With the rights hyperparameters, we are able to achieve a good result.</p>
                             <img src="assets/img/spectrogram.png" class="article__image">
+                            <p class="article__image__title">Spectrogram example</p>
 
                             <h4 class="article__heading">Random Forest.</h4>
                             <p>In another hand, instead of transforming the song into images, we choose to use MIR (Music Information Retrieval) to retrieve some features, music information like tempo, chromas, bandwidth, etc.
@@ -158,6 +164,7 @@
                                 end
                                 user-->|Reading status|api3-->db
                             </div>
+                            <p class="article__image__title">API behavior</p>
                             <p>In the meanwhile, the user is able to request the status of the task. This way of doing is important to ensure atomicity. It is also a way of parallelizing the Task and ensuring that our system is reliable.</p>
                             <p>Once our worker have predicted the category, the user can get it through /status endpoint.</p>
                             <div class="mermaid mermaid__image">
@@ -179,6 +186,7 @@
                                     AI Engine -->> Database: Update song category
                                     User -->> Database: Read song status / category
                             </div>
+                            <p class="article__image__title">Sequence diagram</p>
                             <p>My API contains a swagger, which allow users to know which endpoints are accessible.</p>
                             <p>On top of this, there is an A/B testing strategy. There is an unique endpoint to request classification. While requesting it, you have 50% chance that your song will be classify by CNN model, 50% for teh random forest. Finally, the API is dockerize within Docker (and pushed to docker hub) and is usable by AWS ECS for deployement.</p>
                         </section>
