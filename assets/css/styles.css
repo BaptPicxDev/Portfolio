@@ -1137,6 +1137,10 @@ body.dark-theme{
 		width: calc(250px * 6);
         overflow: hidden;
 	}
+
+    .article__list li {
+        font-size: 14px;
+    }
 }
 
 .slide{
@@ -1243,11 +1247,4 @@ body.dark-theme{
     margin-bottom: 10px;
     font-size: 16px;
     line-height: 1.5;
-}
-
-/* Responsive design */
-@media (max-width: 600px) {
-    .article__list li {
-        font-size: 14px;
-    }
 }
