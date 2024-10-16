@@ -130,7 +130,7 @@
                             <p>For <strong>convolutional neural network, inputs should be image pixels</strong>. In order to get good quality images and to retrieve enough information about a song, I need to transform .wav songs into spectrogram. A <strong>spectrogram (or mel-spectrogram in the case of this project) represents the spectrum of frequencies. It essentially shows how the energy (or amplitude) of different frequencies</strong> in the signal evolves over time. For this we use FFT (Fast Fourier Transform).</p>
                             <img src="assets/img/fft.png" class="article__image">
                             <p class="article__image__title">Fast Fourier Transform schema</p>
-                            <p>Once we get the spectrogram at the right format (not too big images, neither too long), I train the model where each batch of images go through several layers of convolutional neuron layers. When this is done, we propagate the error (comming from the classification of the images) along the neural weights. With the rights hyperparameters, we are able to achieve a good result.</p>
+                            <p>Once we get the spectrogram at the right format (not too big images, neither too long), I train the model where each batch of images go through <strong>several layers of convolutional neurons.</strong> When this is done, we propagate the error (comming from the classification of the images) along the neural weights. With the rights hyperparameters, we are able to achieve a good result.</p>
 
                             <h4 class="aimodel__title">Random Forest.</h4>
                             <p>For the <strong>random forest</strong>, in order to answer to a classification problem, we need several feature representing inputs. Instead of transforming the song into an image, we choose to <strong>use MIR (Music Information Retrieval) to retrieve some features</strong> like tempo, chromas, bandwidth, etc.
@@ -140,9 +140,9 @@
                         <!-- API Section -->
                         <section class="article__block">
                             <h3 class="article__heading">The API & A/B testing.</h3>
-                            <p>Once model are developped and validated, an important part is to make them accessible. For this, I created an API which is an Application interface.</p>
-                            <p>The idea is to allow user to send a request - which is a song they want the category to be predicted. Once the song is received, a Task is created and the song is properly uploaded within the system.</p>
-                            <p>As soon as the Task is created (for this is use a FIFO queue), a worker is able to handle it properly and to apply processing to it before prediction.</p>
+                            <p>Once model are developped and validated, an important part is to <strong>make them accessible.</strong> For this, I created an <strong>API which is an Application interface.</strong></p>
+                            <p>The idea is to allow <strong>user to send a request</strong> - which is a song they want the category to be predicted. Once the song is received, a Task is created and the song is properly uploaded within the system.</p>
+                            <p>As soon as the Task is created (for this is use a <strong>FIFO queue</strong>), a worker is able to handle it properly and to apply processing to it before prediction.</p>
                             <div class="mermaid mermaid__image">
                                 graph LR
                                 user[User]-->|send .wav song|lb
@@ -163,7 +163,7 @@
                                 user-->|Reading status|api3-->db
                             </div>
                             <p class="article__image__title">API behavior</p>
-                            <p>In the meanwhile, the user is able to request the status of the task. This way of doing is important to ensure atomicity. It is also a way of parallelizing the Task and ensuring that our system is reliable.</p>
+                            <p>In the meanwhile, the user is able to <strong>request the status of the task.</strong> This way of doing is important to ensure <strong>atomicity</strong>. It is also a way of <strong>parallelizing</strong> the Task and ensuring that our system is reliable.</p>
                             <p>Once our worker have predicted the category, the user can get it through /status endpoint.</p>
                             <div class="mermaid mermaid__image">
                                 sequenceDiagram
@@ -185,15 +185,15 @@
                                     User -->> Database: Read song status / category
                             </div>
                             <p class="article__image__title">Sequence diagram</p>
-                            <p>My API contains a swagger, which allow users to know which endpoints are accessible.</p>
-                            <p>On top of this, there is an A/B testing strategy. There is an unique endpoint to request classification. While requesting it, you have 50% chance that your song will be classify by CNN model, 50% for teh random forest. Finally, the API is dockerize within Docker (and pushed to docker hub) and is usable by AWS ECS for deployement.</p>
+                            <p>My <strong>API contains a swagger</strong>, which allow users to know which endpoints are accessible.</p>
+                            <p>On top of this, there is an <strong>A/B testing strategy</strong>. There is an unique endpoint to request classification. While requesting it, you have 50% chance that your song will be classify by CNN model, 50% for the random forest. Finally, the API is <strong>dockerize within Docker</strong> (and pushed to Dockerhub) and is usable by <strong>AWS ECS</strong> for deployement.</p>
                         </section>
 
                         <!-- Code versionning -->
                         <section class="article__block">
                             <h3 class="article__heading">The code versionning, MLOPS & CI/CD cycle.</h3>
-                            <p>During the development of the project, I use git to store and to version my code. For this, I use several branches. The main ones are 'main' & 'dev'. Everytime I want to create a new feature, I create a new feature branch coming from the 'dev' one. As soon as my developments are finished and validated, I can merge them into the 'dev' one. Once I want to release a new version of the app, I can merge 'dev' into 'main'.</p>
-                            <p>After, I am able to create a new version and to push my docker images to my private Dockerhub. Then, my CI/CD generates the documentation using Spinx. This documentation (static .html page) is then pushed to github pages.</p>
+                            <p>During the development of the project, I use <strong>git to store and to version my code.</strong> For this, I use several branches. The main ones are 'main' & 'dev'. Everytime I want to create a new feature, I create a new feature branch coming from the 'dev' one. As soon as my developments are finished and validated, I can merge them into the 'dev' one. Once I want to release a new version of the app, I can merge 'dev' into 'main'.</p>
+                            <p>After, I am able to create a new version and to <strong>push my docker images to my private Dockerhub.</strong> Then, my <strong>CI/CD generates the documentation using Spinx</strong>. This documentation (static .html page) is then pushed to github pages.</p>
                             <p>I presented it, there is several jobs in the CI/CD:</p>
                             <ul class="article__list">
                                 <li class="article__list__item">The job to generate the different docker images and to push them to dockerhub.</li>
@@ -202,7 +202,7 @@
                                 <li class="article__list__item">The job to control the quality of the Dockerfiles.</li>
                                 <li class="article__list__item">The job to run unittests / integration tests / end-to-end tests.</li>
                             </ul>
-                            <p>To continue on the monitoring side, we can also talk about MLOps, that is fully integrated durring model training, to keep track of every model run.</p>
+                            <p>To continue on the monitoring side, we can also talk about <strong>MLOps, that is fully integrated during model training</strong>, to keep track of every model run.</p>
                         </section>
 
                         <!-- Cloud Section -->
