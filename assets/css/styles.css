@@ -1173,6 +1173,11 @@ body.dark-theme{
     font-size: var(--font-medium);
     font-weight: var(--body-font);
     font-family: var(--body-family);
+    padding: 20px; /* Add some padding for nicer appearance */
+}
+
+.article__block p{
+    text-align: justify;
 }
 
 .article__heading{
@@ -1182,7 +1187,6 @@ body.dark-theme{
     column-gap: .5rem;
     font-size: var(--h3-font-size);
     font-weight: var(--font-semi-bold);
-    margin-bottom: 2rem;
     border-bottom: 1px solid var(--text-color-light);
 }
 
@@ -1207,12 +1211,8 @@ body.dark-theme{
 
 .mermaid__image,
 .article__image{
-    display: block;
-    justify-content: center;
+    float: left;
     width: 40%;
-    border-radius: 0.25rem;
-    margin-bottom: 0.1rem;
-    margin-top: 0.5rem;
 }
 
 .article__image__title{
@@ -1223,7 +1223,8 @@ body.dark-theme{
     font-style: italic;
     margin-bottom: 1rem;
     padding: 5px 10px;        /* Padding around the subtitle */
-    text-align: center;   
+    text-align: center;  
+    padding: 10px; 
 }
 
 /* Video Container for Responsive YouTube Embedding */
@@ -1253,4 +1254,64 @@ body.dark-theme{
     margin-bottom: 10px;
     font-size: 16px;
     line-height: 1.5;
+}
+
+.article__grid{
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+}
+
+.above {
+    grid-column: 1 / span 2;
+    margin-bottom: 0.5rem;
+}
+
+.right-block{
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    text-align: justify; /* Justify the text */
+    margin-right: 2rem;
+}
+
+.left-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center;    /* Horizontally center content */
+}
+
+.left-block img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.below {
+    grid-column: 1 / span 2;
+}
+
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* Switch to a single-column layout */
+        grid-template-rows: auto 1fr 1fr auto; /* All blocks stack vertically */
+        gap: 0; /* Remove gap for full-width alignment */    
+    }
+
+    .above,
+    .left-block,
+    .right-block,
+    .below {
+        grid-column: 1 / span 2; /* Each block takes up full width */
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+
+    .right-block{
+        display: block; /* Change display to block */
+        justify-content: normal; /* Reset justify-content */
+        align-items: normal; /* Reset align-items */
+    }
 }
