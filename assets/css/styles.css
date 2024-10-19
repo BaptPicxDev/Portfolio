@@ -1265,7 +1265,7 @@ body.dark-theme{
 
 .above {
     grid-column: 1 / span 2;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .right-block{
@@ -1273,7 +1273,8 @@ body.dark-theme{
     justify-content: center;  /* Center horizontally */
     align-items: center;      /* Center vertically */
     text-align: justify; /* Justify the text */
-    margin-right: 2rem;
+    margin-right: 1rem;
+    margin-left: 1.5rem;
 }
 
 .left-block{
@@ -1290,6 +1291,7 @@ body.dark-theme{
 
 .below {
     grid-column: 1 / span 2;
+    margin-top: 1rem;
 }
 
 /* Media Query for Responsive Design */
