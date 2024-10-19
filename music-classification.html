@@ -143,21 +143,27 @@
                                     <p>For <strong>convolutional neural network, inputs should be image pixels</strong>. In order to achieve good quality images and to retrieve enough information about a song, I need to transform .wav songs into spectrogram images.</p>
                                 </div>
                                 <div class="left-block">
-                                    <img src="assets/img/fft.png" class="article__image">
+                                    <img src="assets/img/fft-2.webp" class="article__image">
                                     <p class="article__image__title">Fast Fourier Transform schema</p>
                                 </div>
                                 <div class="right-block">
-                                    <p>The diagram illustrates how sound information is represented depending on the perspective. If we examine the data from a <strong>time-based perspective</strong>, we can observe the amplitude of the signal for each frequency at a specific moment. On the other hand, from a <strong>frequency-based perspective</strong>, we can see the range of frequencies but without any information on how they change over time. Both of these views are limited and overly simplified. To achieve a correct accuracy while classifying, we need a detailed <strong>representation that captures both time and frequency information simultaneously</strong>. This is where the spectrogram comes in. A <strong>spectrogram (or mel-spectrogram, as used in this project) displays the frequency spectrum</strong>, showing how the energy (or amplitude) of different frequencies in the signal varies over time. For this, we use the Fast Fourier Transform (FFT).</p>    
+                                    <p>The diagram illustrates how sound information is represented depending on the perspective. If we examine the data from a <strong>time-based perspective</strong>, we can observe the amplitude of the signal for all the frequencies at a specific moment. On the other hand, from a <strong>frequency-based perspective</strong>, we can see the range of frequencies but without any information on how they change over time. Unfortunately, both of these views are limited and overly simplified. To achieve a correct accuracy while classifying, we need a detailed <strong>representation that captures both time and frequency information simultaneously</strong>. This is where the spectrogram comes in. A <strong>spectrogram (or mel-spectrogram, as used in this project) displays the frequency spectrum</strong>, showing how the energy (or amplitude) of different frequencies in the signal varies over time. For this, we use the Fast Fourier Transform (FFT).</p>    
                                 </div>
                                 <div class="below">
                                     <p>Once we get the spectrogram at the right format (not too big images, neither too long), I train the model where each batch of images go through <strong>several layers of convolutional neurons.</strong> When this is done, we propagate the error (comming from the classification of the images) along the neural weights. With the rights hyperparameters, we are able to achieve a good result.</p>
-                                    <p>The idea behind convolutional network is to allow our model to learn recognaziable patterns. For example, a metal song contains specific basse lines that should</p>
+                                    <p>The concept behind convolutional networks is to enable our model <strong>to learn recognizable patterns.</strong> For instance, a metal song has distinct drum patterns that a CONV2D model can easily detect.</p>
                                 </div>
                             </div>
 
-                            <h4 class="aimodel__title">Random Forest.</h4>
-                            <p>For the <strong>random forest</strong>, in order to answer to a classification problem, we need several feature representing inputs. Instead of transforming the song into an image, we choose to <strong>use MIR (Music Information Retrieval) to retrieve some features</strong> like tempo, chromas, bandwidth, etc.
-                            <p>Once I get this information, I am able to train a Random Forest model with the correct hyper-parameters. In this case, the <strong>number of decision trees and the depth of each decision tree should be balance</strong> in order to achieve a satisfying result.</p>
+                            <div class="article__grid">
+                                <div class="above">
+                                    <h4 class="aimodel__title">Random Forest.</h4>
+                                    <p>For the <strong>random forest</strong>, in order to answer to a classification problem, we need several feature representing inputs. Instead of transforming the song into an image, we choose to <strong>use MIR (Music Information Retrieval) to retrieve some features</strong> like tempo, chromas, bandwidth, etc.</p>
+                                </div>
+                                <div class="below">
+                                    <p>Once I get this information, I am able to train a Random Forest model with the correct hyper-parameters. In this case, the <strong>number of decision trees and the depth of each decision tree should be balance</strong> in order to achieve a satisfying result.</p>
+                                </div>
+                            </div>
                         </section>
 
                         <!-- API Section -->

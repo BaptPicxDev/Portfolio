@@ -1277,6 +1277,10 @@ body.dark-theme{
     margin-left: 1.5rem;
 }
 
+.right-block p{
+    display: block;
+}
+
 .left-block{
     display: flex;
     flex-direction: column;
