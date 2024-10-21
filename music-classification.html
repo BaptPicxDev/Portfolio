@@ -135,11 +135,11 @@
 
                         <!-- AI Section -->                        
                         <section class="article__block">
-                            <h3 class="article__heading">Artificial intelligence models development.</h3>
+                            <h3 class="article__heading">Artificial intelligence models development</h3>
                             <p>Even if the idea behind this project is to show you fast I can <strong>deploy a model in production</strong>, models are important. Here is presented the 2 distinct models:</p>
                             <div class="article__grid">
                                 <div class="above">
-                                    <h4 class="aimodel__title">Convolutional neural network.</h4>
+                                    <h4 class="aimodel__title">Convolutional neural network</h4>
                                     <p>For <strong>convolutional neural network, inputs should be image pixels</strong>. In order to achieve good quality images and to retrieve enough information about a song, I need to transform .wav songs into spectrogram images.</p>
                                 </div>
                                 <div class="left-block">
@@ -157,11 +157,18 @@
 
                             <div class="article__grid">
                                 <div class="above">
-                                    <h4 class="aimodel__title">Random Forest.</h4>
-                                    <p>For the <strong>random forest</strong>, in order to answer to a classification problem, we need several feature representing inputs. Instead of transforming the song into an image, we choose to <strong>use MIR (Music Information Retrieval) to retrieve some features</strong> like tempo, chromas, bandwidth, etc.</p>
+                                    <h4 class="aimodel__title">Random Forest</h4>
+                                    <p>For the <strong>random forest</strong>, in order to answer to a classification problem, we need several feature representing inputs. Instead of transforming the song into an image, we choose to <strong>use MIR (Music Information Retrieval) to retrieve features</strong> like tempo, chromas, bandwidth, etc.</p>
+                                </div>
+                                <div class="left-block">
+                                    <img src="assets/img/random_forest.png">
+                                    <p class="article__image__title">Random Forest behavior</p>
+                                </div>
+                                <div class="right__block">
+                                    <p>One of the features that distinguishes song categories is chroma. <strong>Chroma feature captures harmonic and melodic characteristics</strong>. Once we get features as chromas, we can provide them to the random forest classifier model. <strong>Random forest</strong> is an algorithm that combines several decision tree models where every decision tree is slightly different. When they are all trained, we can predict a specific input buy asking all the decision trees. Then we are following the majority.</p>
                                 </div>
                                 <div class="below">
-                                    <p>Once I get this information, I am able to train a Random Forest model with the correct hyper-parameters. In this case, the <strong>number of decision trees and the depth of each decision tree should be balance</strong> in order to achieve a satisfying result.</p>
+                                    <p>When I am able to train a Random Forest model with the correct hyper-parameters, where the <strong>number of decision trees and the depth of each decision tree are important, the results should be balance</strong> in order to achieve a satisfying result.</p>
                                 </div>
                             </div>
                         </section>
