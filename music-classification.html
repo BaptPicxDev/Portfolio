@@ -164,7 +164,7 @@
                                     <img src="assets/img/random_forest.png">
                                     <p class="article__image__title">Random Forest behavior</p>
                                 </div>
-                                <div class="right__block">
+                                <div class="right-block">
                                     <p>One of the features that distinguishes song categories is chroma. <strong>Chroma feature captures harmonic and melodic characteristics</strong>. Once we get features as chromas, we can provide them to the random forest classifier model. <strong>Random forest</strong> is an algorithm that combines several decision tree models where every decision tree is slightly different. When they are all trained, we can predict a specific input buy asking all the decision trees. Then we are following the majority.</p>
                                 </div>
                                 <div class="below">
@@ -179,48 +179,52 @@
                             <p>Once model are developped and validated, an important part is to <strong>make them accessible.</strong> For this, I created an <strong>API which is an Application interface.</strong></p>
                             <p>The idea is to allow <strong>user to send a request</strong> - which is a song they want the category to be predicted. Once the song is received, a Task is created and the song is properly uploaded within the system.</p>
                             <p>As soon as the Task is created (for this is use a <strong>FIFO queue</strong>), a worker is able to handle it properly and to apply processing to it before prediction.</p>
-                            <div class="mermaid mermaid__image">
-                                graph LR
-                                user[User]-->|send .wav song|lb
-                                subgraph AWS ECS
-                                    subgraph API
-                                        lb[Load balancer]-->|50%|api1[Endpoint MIR]
-                                        lb-->|50%|api2[Endpoint CNN]
-                                        api1-->|Create task|queue[FIFO Queue]
-                                        api2-->|Create task|queue
-                                        api3[Status endpoint]
+                            <div class="mermaid-block">
+                                <div class="mermaid mermaid__image">
+                                    graph LR
+                                    user[User]-->|send .wav song|lb
+                                    subgraph AWS ECS
+                                        subgraph API
+                                            lb[Load balancer]-->|50%|api1[Endpoint MIR]
+                                            lb-->|50%|api2[Endpoint CNN]
+                                            api1-->|Create task|queue[FIFO Queue]
+                                            api2-->|Create task|queue
+                                            api3[Status endpoint]
+                                        end
+                                        subgraph AI
+                                            ai[AI Engine]-->|Read task|queue
+                                            ai-->|Compute song category|ai
+                                            ai-->|Save category into database|db[Database]
+                                        end
                                     end
-                                    subgraph AI
-                                        ai[AI Engine]-->|Read task|queue
-                                        ai-->|Compute song category|ai
-                                        ai-->|Save category into database|db[Database]
-                                    end
-                                end
-                                user-->|Reading status|api3-->db
+                                    user-->|Reading status|api3-->db
+                                </div>
+                                <p class="article__image__title">API behavior</p>    
                             </div>
-                            <p class="article__image__title">API behavior</p>
                             <p>In the meanwhile, the user is able to <strong>request the status of the task.</strong> This way of doing is important to ensure <strong>atomicity</strong>. It is also a way of <strong>parallelizing</strong> the Task and ensuring that our system is reliable.</p>
                             <p>Once our worker have predicted the category, the user can get it through /status endpoint.</p>
-                            <div class="mermaid mermaid__image">
-                                sequenceDiagram
-                                    User ->> API: POST .wav song through API
-                                    API ->> Queue: Create a task
-                                    activate Queue
-                                    Queue -->> API: Task created
-                                    deactivate Queue
-                                    API -->> User: Send task UUID
-                                    Note right of Queue: FIFO Queue
-                                    
-                                    AI Engine ->> Queue: Read task
-                                    Note right of AI Engine: MIR or CNN model
-                                    activate AI Engine
-                                    AI Engine ->> AI Engine: Compute the song category
-                                    deactivate AI Engine
-                                    
-                                    AI Engine -->> Database: Update song category
-                                    User -->> Database: Read song status / category
+                            <div class="mermaid-block">
+                                <div class="mermaid mermaid__image">
+                                    sequenceDiagram
+                                        User ->> API: POST .wav song through API
+                                        API ->> Queue: Create a task
+                                        activate Queue
+                                        Queue -->> API: Task created
+                                        deactivate Queue
+                                        API -->> User: Send task UUID
+                                        Note right of Queue: FIFO Queue
+                                        
+                                        AI Engine ->> Queue: Read task
+                                        Note right of AI Engine: MIR or CNN model
+                                        activate AI Engine
+                                        AI Engine ->> AI Engine: Compute the song category
+                                        deactivate AI Engine
+                                        
+                                        AI Engine -->> Database: Update song category
+                                        User -->> Database: Read song status / category
+                                </div>
+                                <p class="article__image__title">Sequence diagram</p>    
                             </div>
-                            <p class="article__image__title">Sequence diagram</p>
                             <p>My <strong>API contains a swagger</strong>, which allow users to know which endpoints are accessible.</p>
                             <p>On top of this, there is an <strong>A/B testing strategy</strong>. There is an unique endpoint to request classification. While requesting it, you have 50% chance that your song will be classify by CNN model, 50% for the random forest. Finally, the API is <strong>dockerize within Docker</strong> (and pushed to Dockerhub) and is usable by <strong>AWS ECS</strong> for deployement.</p>
                         </section>
