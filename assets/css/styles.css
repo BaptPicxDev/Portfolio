@@ -1209,7 +1209,6 @@ body.dark-theme{
     border-bottom: none;
 }
 
-.mermaid__image,
 .article__image{
     float: left;
     width: 40%;
@@ -1265,7 +1264,7 @@ body.dark-theme{
 
 .above {
     grid-column: 1 / span 2;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .right-block{
@@ -1273,7 +1272,12 @@ body.dark-theme{
     justify-content: center;  /* Center horizontally */
     align-items: center;      /* Center vertically */
     text-align: justify; /* Justify the text */
-    margin-right: 2rem;
+    margin-right: 1rem;
+    margin-left: 1.5rem;
+}
+
+.right-block p{
+    display: block;
 }
 
 .left-block{
@@ -1290,6 +1294,18 @@ body.dark-theme{
 
 .below {
     grid-column: 1 / span 2;
+    margin-top: 1rem;
+}
+
+.mermaid-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center;    /* Horizontally center content */
+}
+
+.mermaid__image{
+    width: 75%;
 }
 
 /* Media Query for Responsive Design */
