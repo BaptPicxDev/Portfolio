@@ -1329,5 +1329,6 @@ body.dark-theme{
         display: block; /* Change display to block */
         justify-content: normal; /* Reset justify-content */
         align-items: normal; /* Reset align-items */
+        margin-right: 5rem;
     }
 }
