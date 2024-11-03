@@ -104,7 +104,7 @@
                     <div class="article__content">
                         <!-- General Section -->
                         <section class="article__block">
-                            <h3 class="article__heading">General presentation.</h3>
+                            <h3 class="article__heading">General presentation</h3>
                             <div class="article__grid">
                                 <div class="above">
                                     <p>This project started in 2019 when I was studying in Mendoza, Argentina. My thesis project was about signal processing and artificial intelligence. I decided to develop my own <strong>CNN model using GTZAN dataset.</strong></p>
@@ -118,36 +118,59 @@
                                 <div class="right-block">
                                     <p>Here, you can notice a quick overview of the data architecture. You can notice that I am using <strong>AWS cloud solutions</strong> to make it accessible. The 2 artificial intelligence models I developed are used at the same time, in parallel, following an A/B testing strategy.</p>
                                 </div>
-                                <div class="below">
-                                    <p></p>
-                                </div>
-                            </div>   
-                            <p></p>
+                                <div class="below"></div>
+                            </div>
                         </section>
 
                         <!-- Architecture Section -->
                         <section class="article__block">
-                            <h3 class="article__heading">Data architecture.</h3>
+                            <h3 class="article__heading">Data architecture</h3>
                             <p>Let's start with the data architecture. First, it was important for me to work with cloud solutions.</p>
-                            <p>On dev side, I am able to instanciate an <strong>EC2 instance using Bash script</strong>. For the deployment of a <strong>production solution, I use IAC solution & AWS ECS service.</strong></p>
-                            <p>Once the code was correctly working, I built docker images to be able to deploy it easily on arm86/amd86 servers. Regarding the data, they are downloaded on Kaggle, using the kaggle API. As soon as the models are built, it is possible <strong>to save the weights on AWS S3.</strong></p>
+                            <p>On dev side, I am able to instanciate an <strong>EC2 instance using Bash script</strong>. In another hand, it was really important for me to be able to provide a mock version of the app to be able to work offline.</p>
+                            <p>For the deployment of a <strong>production solution, I instanciate an AWS ECS service using AIC.</strong> Before pushing the latest version of my Docker image, I had to pass all the CI/CD (that ends will the build and the push of the docker image to a private repository on AWS). I built docker images to be able to be deployed easily on arm86/amd86 architectures.</p>
+                            <p>Regarding the data, they are downloaded on Kaggle, using the kaggle API. As soon as the models are built, it is possible <strong>to save the weights on AWS S3.</strong></p>
                             <p>Finally, an API is build on top of this to allow to request the prediction of a song category. In this case, the song is processed & saved on S3 bucket. The API has his own docker container.</p>
                             <p>If everything runs fine, the <strong>docker images can be saved on AWS ECR or DockerHub.</strong></p>
                         </section>
 
                         <!-- AI Section -->                        
                         <section class="article__block">
-                            <h3 class="article__heading">Artificial intelligence models development.</h3>
+                            <h3 class="article__heading">Artificial intelligence models development</h3>
                             <p>Even if the idea behind this project is to show you fast I can <strong>deploy a model in production</strong>, models are important. Here is presented the 2 distinct models:</p>
-                            <h4 class="aimodel__title">Convolutional neural network.</h4>
-                            <p>For <strong>convolutional neural network, inputs should be image pixels</strong>. In order to get good quality images and to retrieve enough information about a song, I need to transform .wav songs into spectrogram. A <strong>spectrogram (or mel-spectrogram in the case of this project) represents the spectrum of frequencies. It essentially shows how the energy (or amplitude) of different frequencies</strong> in the signal evolves over time. For this we use FFT (Fast Fourier Transform).</p>
-                            <img src="assets/img/fft.png" class="article__image">
-                            <p class="article__image__title">Fast Fourier Transform schema</p>
-                            <p>Once we get the spectrogram at the right format (not too big images, neither too long), I train the model where each batch of images go through <strong>several layers of convolutional neurons.</strong> When this is done, we propagate the error (comming from the classification of the images) along the neural weights. With the rights hyperparameters, we are able to achieve a good result.</p>
+                            <div class="article__grid">
+                                <div class="above">
+                                    <h4 class="aimodel__title">Convolutional neural network</h4>
+                                    <p>For <strong>convolutional neural network, inputs should be image pixels</strong>. In order to achieve good quality images and to retrieve enough information about a song, I need to transform .wav songs into spectrogram images.</p>
+                                </div>
+                                <div class="left-block">
+                                    <img src="assets/img/fft-2.webp" class="article__image">
+                                    <p class="article__image__title">Fast Fourier Transform schema</p>
+                                </div>
+                                <div class="right-block">
+                                    <p>The diagram illustrates how sound information is represented depending on the perspective. If we examine the data from a <strong>time-based perspective</strong>, we can observe the amplitude of the signal for all the frequencies at a specific moment. On the other hand, from a <strong>frequency-based perspective</strong>, we can see the range of frequencies but without any information on how they change over time. Unfortunately, both of these views are limited and overly simplified. To achieve a correct accuracy while classifying, we need a detailed <strong>representation that captures both time and frequency information simultaneously</strong>. This is where the spectrogram comes in. A <strong>spectrogram (or mel-spectrogram, as used in this project) displays the frequency spectrum</strong>, showing how the energy (or amplitude) of different frequencies in the signal varies over time. For this, we use the Fast Fourier Transform (FFT).</p>    
+                                </div>
+                                <div class="below">
+                                    <p>Once we get the spectrogram at the right format (not too big images, neither too long), I train the model where each batch of images go through <strong>several layers of convolutional neurons.</strong> When this is done, we propagate the error (comming from the classification of the images) along the neural weights. With the rights hyperparameters, we are able to achieve a good result.</p>
+                                    <p>The concept behind convolutional networks is to enable our model <strong>to learn recognizable patterns.</strong> For instance, a metal song has distinct drum patterns that a CONV2D model can easily detect.</p>
+                                </div>
+                            </div>
 
-                            <h4 class="aimodel__title">Random Forest.</h4>
-                            <p>For the <strong>random forest</strong>, in order to answer to a classification problem, we need several feature representing inputs. Instead of transforming the song into an image, we choose to <strong>use MIR (Music Information Retrieval) to retrieve some features</strong> like tempo, chromas, bandwidth, etc.
-                            <p>Once I get this information, I am able to train a Random Forest model with the correct hyper-parameters. In this case, the <strong>number of decision trees and the depth of each decision tree should be balance</strong> in order to achieve a satisfying result.</p>
+                            <div class="article__grid">
+                                <div class="above">
+                                    <h4 class="aimodel__title">Random Forest</h4>
+                                    <p>For the <strong>random forest</strong>, in order to answer to a classification problem, we need several feature representing inputs. Instead of transforming the song into an image, we choose to <strong>use MIR (Music Information Retrieval) to retrieve features</strong> like tempo, chromas, bandwidth, etc.</p>
+                                </div>
+                                <div class="left-block">
+                                    <img src="assets/img/random_forest.png">
+                                    <p class="article__image__title">Random Forest behavior</p>
+                                </div>
+                                <div class="right-block">
+                                    <p>One of the features that distinguishes song categories is chroma. <strong>Chroma feature captures harmonic and melodic characteristics</strong>. Once we get features as chromas, we can provide them to the random forest classifier model. <strong>Random forest</strong> is an algorithm that combines several decision tree models where every decision tree is slightly different. When they are all trained, we can predict a specific input buy asking all the decision trees. Then we are following the majority.</p>
+                                </div>
+                                <div class="below">
+                                    <p>When I am able to train a Random Forest model with the correct hyper-parameters, where the <strong>number of decision trees and the depth of each decision tree are important, the results should be balance</strong> in order to achieve a satisfying result.</p>
+                                </div>
+                            </div>
                         </section>
 
                         <!-- API Section -->
@@ -156,48 +179,52 @@
                             <p>Once model are developped and validated, an important part is to <strong>make them accessible.</strong> For this, I created an <strong>API which is an Application interface.</strong></p>
                             <p>The idea is to allow <strong>user to send a request</strong> - which is a song they want the category to be predicted. Once the song is received, a Task is created and the song is properly uploaded within the system.</p>
                             <p>As soon as the Task is created (for this is use a <strong>FIFO queue</strong>), a worker is able to handle it properly and to apply processing to it before prediction.</p>
-                            <div class="mermaid mermaid__image">
-                                graph LR
-                                user[User]-->|send .wav song|lb
-                                subgraph AWS ECS
-                                    subgraph API
-                                        lb[Load balancer]-->|50%|api1[Endpoint MIR]
-                                        lb-->|50%|api2[Endpoint CNN]
-                                        api1-->|Create task|queue[FIFO Queue]
-                                        api2-->|Create task|queue
-                                        api3[Status endpoint]
+                            <div class="mermaid-block">
+                                <div class="mermaid mermaid__image">
+                                    graph LR
+                                    user[User]-->|send .wav song|lb
+                                    subgraph AWS ECS
+                                        subgraph API
+                                            lb[Load balancer]-->|50%|api1[Endpoint MIR]
+                                            lb-->|50%|api2[Endpoint CNN]
+                                            api1-->|Create task|queue[FIFO Queue]
+                                            api2-->|Create task|queue
+                                            api3[Status endpoint]
+                                        end
+                                        subgraph AI
+                                            ai[AI Engine]-->|Read task|queue
+                                            ai-->|Compute song category|ai
+                                            ai-->|Save category into database|db[Database]
+                                        end
                                     end
-                                    subgraph AI
-                                        ai[AI Engine]-->|Read task|queue
-                                        ai-->|Compute song category|ai
-                                        ai-->|Save category into database|db[Database]
-                                    end
-                                end
-                                user-->|Reading status|api3-->db
+                                    user-->|Reading status|api3-->db
+                                </div>
+                                <p class="article__image__title">API behavior</p>    
                             </div>
-                            <p class="article__image__title">API behavior</p>
                             <p>In the meanwhile, the user is able to <strong>request the status of the task.</strong> This way of doing is important to ensure <strong>atomicity</strong>. It is also a way of <strong>parallelizing</strong> the Task and ensuring that our system is reliable.</p>
                             <p>Once our worker have predicted the category, the user can get it through /status endpoint.</p>
-                            <div class="mermaid mermaid__image">
-                                sequenceDiagram
-                                    User ->> API: POST .wav song through API
-                                    API ->> Queue: Create a task
-                                    activate Queue
-                                    Queue -->> API: Task created
-                                    deactivate Queue
-                                    API -->> User: Send task UUID
-                                    Note right of Queue: FIFO Queue
-                                    
-                                    AI Engine ->> Queue: Read task
-                                    Note right of AI Engine: MIR or CNN model
-                                    activate AI Engine
-                                    AI Engine ->> AI Engine: Compute the song category
-                                    deactivate AI Engine
-                                    
-                                    AI Engine -->> Database: Update song category
-                                    User -->> Database: Read song status / category
+                            <div class="mermaid-block">
+                                <div class="mermaid mermaid__image">
+                                    sequenceDiagram
+                                        User ->> API: POST .wav song through API
+                                        API ->> Queue: Create a task
+                                        activate Queue
+                                        Queue -->> API: Task created
+                                        deactivate Queue
+                                        API -->> User: Send task UUID
+                                        Note right of Queue: FIFO Queue
+                                        
+                                        AI Engine ->> Queue: Read task
+                                        Note right of AI Engine: MIR or CNN model
+                                        activate AI Engine
+                                        AI Engine ->> AI Engine: Compute the song category
+                                        deactivate AI Engine
+                                        
+                                        AI Engine -->> Database: Update song category
+                                        User -->> Database: Read song status / category
+                                </div>
+                                <p class="article__image__title">Sequence diagram</p>    
                             </div>
-                            <p class="article__image__title">Sequence diagram</p>
                             <p>My <strong>API contains a swagger</strong>, which allow users to know which endpoints are accessible.</p>
                             <p>On top of this, there is an <strong>A/B testing strategy</strong>. There is an unique endpoint to request classification. While requesting it, you have 50% chance that your song will be classify by CNN model, 50% for the random forest. Finally, the API is <strong>dockerize within Docker</strong> (and pushed to Dockerhub) and is usable by <strong>AWS ECS</strong> for deployement.</p>
                         </section>
