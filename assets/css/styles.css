@@ -1211,7 +1211,7 @@ body.dark-theme{
 
 .article__image{
     float: left;
-    width: 40%;
+    width: 70%;
 }
 
 .article__image__title{
@@ -1330,5 +1330,9 @@ body.dark-theme{
         justify-content: normal; /* Reset justify-content */
         align-items: normal; /* Reset align-items */
         margin-right: 5rem;
+    }
+
+    .article__image{
+        width: 40%;
     }
 }
